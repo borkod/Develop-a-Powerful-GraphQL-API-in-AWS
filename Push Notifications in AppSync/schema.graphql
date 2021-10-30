@@ -1,0 +1,37 @@
+type Hotel {
+	id: ID
+	short_description: String
+	hotel_name: String
+	city: String
+	long_description: String
+	number_of_votes: Int
+	average: Float
+}
+
+input HotelInput {
+	hotel_name: String!
+	city: String!
+	short_description: String!
+	long_description: String
+	number_of_votes: Int
+	average: Float
+}
+
+type Mutation {
+	newHotel(hotel: HotelInput!): Hotel
+}
+
+type Query {
+	getHotelByIdDynamoDB(id: ID!): Hotel
+}
+
+type Subscription {
+	newHotelAdded: Hotel
+		@aws_subscribe(mutations: ["newHotel"])
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}
