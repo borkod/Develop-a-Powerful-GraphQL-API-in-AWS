@@ -1,0 +1,17 @@
+type Hotel {
+	id: ID
+	short_description: String
+	hotel_name: String
+	city: String
+	long_description: String
+	number_of_votes: String
+	average: String
+}
+
+type Query {
+	getHotelById(id: ID!): Hotel
+}
+
+schema {
+	query: Query
+}
